@@ -17,13 +17,22 @@ class MeatSerializers(serializers.ModelSerializer):
         fields = '__all__'
 
 class OrderSerializers(serializers.ModelSerializer):
-    meats = MeatSerializers(many=True)
+    meats = MeatSerializers(many=True, read_only=True)
     # meat_with_cost = serializers.SerializerMethodField('meat_cost')
     #  def meat_cost(self, obj):
     #      data = Meats.objects.filter
     #      return 
+
     
     class Meta:
         model = Orders
         fields = '__all__'
         depth = 1
+
+class OrderManySerializers(serializers.ModelSerializer):
+    meats = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+
+    class Meta:
+        model = Orders
+        fields= '__all__'
+        depth=1

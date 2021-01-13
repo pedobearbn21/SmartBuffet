@@ -65,3 +65,5 @@ class Orders(models.Model):
     #     # meat_list  = ''.join(self.meat)
 
     #     return f'id :{self.id},  status:{self.status.all()}'
+
+
